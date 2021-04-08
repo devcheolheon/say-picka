@@ -81,10 +81,7 @@ export class MenuView {
         0,
         0
       ),
-      withWho: [
-        makeSpriteWithAnchorXY(textures, TEXURES.WITH_COMPUTER, 0, 0),
-        makeSpriteWithAnchorXY(textures, TEXURES.WITH_FRIEND, 0, 0),
-      ],
+      withWho: [makeSpriteWithAnchorXY(textures, TEXURES.WITH_COMPUTER, 0, 0)],
       sachisoft: makeSpriteWithAnchorXY(textures, TEXURES.SACHISOFT, 0, 0),
       fight: makeSpriteWithAnchorXY(textures, TEXURES.FIGHT, 0, 0),
     };
@@ -107,7 +104,6 @@ export class MenuView {
     this.container.addChild(this.messages.pokemon);
     this.container.addChild(this.messages.pikachuVolleyball);
     this.container.addChild(this.messages.withWho[0]);
-    this.container.addChild(this.messages.withWho[1]);
     this.container.addChild(this.messages.sachisoft);
     this.container.addChild(this.messages.fight);
     this.initializeVisibles();
@@ -282,7 +278,7 @@ export class MenuView {
     const h = withWho[0].texture.height;
 
     if (frameCounter === 0) {
-      for (let i = 0; i < 2; i++) {
+      for (let i = 0; i < 1; i++) {
         withWho[i].visible = false;
       }
       return;
@@ -292,7 +288,7 @@ export class MenuView {
       if (this.selectedWithWhoMessageSizeIncrement < 10) {
         this.selectedWithWhoMessageSizeIncrement += 1;
       }
-      for (let i = 0; i < 2; i++) {
+      for (let i = 0; i < 1; i++) {
         const selected = Number(this.selectedWithWho === i); // 1 if selected, 0 otherwise
         const halfWidthIncrement =
           selected * (this.selectedWithWhoMessageSizeIncrement + 2);
