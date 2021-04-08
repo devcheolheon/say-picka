@@ -9,7 +9,7 @@ var SpeechGrammarList =
 const setSpeechRecognition = (recognition) => {
   if (recognition) return recognition;
   recognition = new SpeechRecognition();
-  var pikachus = ["피카"];
+  var pikachus = ["피카", "피", "카"];
   var speechRecognitionList = new SpeechGrammarList();
 
   var grammar =
@@ -19,7 +19,7 @@ const setSpeechRecognition = (recognition) => {
 
   speechRecognitionList.addFromString(grammar, 1);
 
-  recognition.continuous = false;
+  recognition.continuous = true;
   recognition.lang = "ko-KR";
   recognition.interimResults = true;
   recognition.maxAlternatives = 5;
@@ -34,7 +34,7 @@ const setSpeechRecognition = (recognition) => {
 
 const checkPika = (results) => {
   for (let result of results) {
-    if (result.transcript.indexOf("피카") > -1) {
+    if (result.transcript.indexOf("피") > -1) {
       return true;
     }
   }

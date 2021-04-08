@@ -202,7 +202,6 @@ class Pika {
     this.downsettimeout = setTimeout(() => {
       this.upHandler();
     }, this.downtime);
-    console.log("피카");
   }
 
   /**
