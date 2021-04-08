@@ -1,8 +1,9 @@
 /**
  * This module takes charge of the user input via keyboard
  */
-'use strict';
-import { PikaUserInput } from './physics.js';
+"use strict";
+import { TilingSprite } from "pixi.js-legacy";
+import { PikaUserInput } from "./physics.js";
 
 /**
  * Class representing a keyboard used to contorl a player
@@ -36,7 +37,7 @@ export class PikaKeyboard extends PikaUserInput {
     /** @type {Key} */
     this.downKey = new Key(down);
     /** @type {Key} */
-    this.powerHitKey = new Key(powerHit);
+    this.powerHitKey = new Pika(powerHit);
     /** @type {Key} */
     this.downRightKey = new Key(downRight);
   }
@@ -150,16 +151,80 @@ class Key {
    * Subscribe event listeners
    */
   subscribe() {
-    window.addEventListener('keydown', this.downListener);
-    window.addEventListener('keyup', this.upListner);
+    window.addEventListener("keydown", this.downListener);
+    window.addEventListener("keyup", this.upListner);
   }
 
   /**
    * Unsubscribe event listeners
    */
   unsubscribe() {
-    window.removeEventListener('keydown', this.downListener);
-    window.removeEventListener('keyup', this.upListner);
+    window.removeEventListener("keydown", this.downListener);
+    window.removeEventListener("keyup", this.upListner);
+    this.isDown = false;
+    this.isUp = true;
+  }
+}
+
+/**
+ *  음성 이벤트 Pika를 받아들이기 위한 클래스
+ *
+ */
+class Pika {
+  /**
+   * Key 클래스의 메소드를 대부분 구현함..
+   */
+  constructor(value) {
+    this.value = value;
+    this.isDown = false;
+    this.isUp = true;
+    this.downsettimeout = null;
+    this.downtime = 300;
+
+    this.downListener = this.downHandler.bind(this);
+    this.upListner = this.upHandler.bind(this);
+    this.subscribe();
+  }
+
+  /**
+   * When Pika event triggered
+   * after this.downtime, call upHandler
+   */
+
+  downHandler() {
+    this.isDown = true;
+    this.isUp = false;
+
+    if (this.downsettimeout) {
+      clearTimeout(this.downsettimeout);
+    }
+
+    this.downsettimeout = setTimeout(() => {
+      this.upHandler();
+    }, this.downtime);
+    console.log("피카");
+  }
+
+  /**
+   * After this.downtime
+   */
+  upHandler() {
+    this.isDown = false;
+    this.isUp = true;
+  }
+
+  /**
+   * Subscribe event listeners
+   */
+  subscribe() {
+    document.addEventListener("PIKA", this.downListener);
+  }
+
+  /**
+   * Unsubscribe event listeners
+   */
+  unsubscribe() {
+    document.removeEventListener("PIKA", this.downListener);
     this.isDown = false;
     this.isUp = true;
   }
