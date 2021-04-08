@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 
 var SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
+
 var SpeechGrammarList =
   window.SpeechGrammarList || window.webkitSpeechGrammarList;
+
+var eventPika = new Event("PIKA");
 
 export const useRecognizer = () => {
   const [outputText, setOutputText] = useState("");
@@ -34,51 +37,30 @@ export const useRecognizer = () => {
 
     recognition.onresult = function (event) {
       var text = event.results[0][0].transcript;
+      var hasPika = false;
+
       for (let result of event.results[0]) {
-        console.log(result.transcript);
+        if (result.transcript.indexOf("피카") > -1) hasPika = true;
       }
-      if (text) {
-        console.log("get result");
+
+      if (hasPika) {
+        console.log("event");
+        document.dispatchEvent(eventPika);
         recognition.stop();
       }
-      //recognition.start();
+
+      setOutputText(text);
     };
 
-    recognition.onerror = function (event) {
-      console.log(event);
-    };
+    document.addEventListener("PIKA", (e) => {
+      console.log("피카 이벤트 발생");
+    });
 
-    recognition.onnomatch = function (event) {
-      var text = event.results[0][0].transcript;
-      for (let result of event.results[0]) {
-        console.log(result.transcript);
-      }
-
-      console.log(event.results);
-      console.log("get nomatch");
-      if (text) {
-        recognition.stop();
-      }
-      //recognition.start();
-    };
-
-    recognition.onsoundstart = (evt) => {
-      console.log("sound start");
-    };
-
-    recognition.onsoundend = (evt) => {
-      console.log("sound end");
-    };
-
-    recognition.onend = (evt) => {
-      console.log("end and start");
+    recognition.onend = function (event) {
       recognition.start();
     };
 
-    recognition.onspeechend = (evt) => {
-      console.log("speechend");
-    };
-
+    return () => recognition.stop();
     //onError도 한 번!
   }, []);
 

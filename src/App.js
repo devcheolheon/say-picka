@@ -3,17 +3,12 @@ import { useRecognizer } from "./useRecognizer.js";
 import initAndStart from "./resources/js/main.js";
 
 const App = () => {
-  //const [outputText, startRecognizer, endRecognizer, error] = useRecognizer();
+  const [outputText, startRecognizer, endRecognizer, error] = useRecognizer();
 
-  /*
-  useEffect(() => startRecognizer(), []);
   useEffect(() => {
-    document.addEventListener("keyup", (ev) => {
-      console.log(ev.code);
-      if (ev.code === "Enter") endRecognizer();
-    });
+    startRecognizer();
+    return () => endRecognizer();
   }, []);
-  */
 
   useEffect(() => {
     let container = initAndStart();
@@ -24,6 +19,7 @@ const App = () => {
 
   return (
     <div>
+      <div>{outputText}</div>
       <div id="game-canvas-container"></div>
     </div>
   );
