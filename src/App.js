@@ -1,8 +1,11 @@
 import React, { useEffect } from "react";
 import { useRecognizer } from "./useRecognizer.js";
+import initAndStart from "./resources/js/main.js";
 
 const App = () => {
-  const [outputText, startRecognizer, endRecognizer, error] = useRecognizer();
+  //const [outputText, startRecognizer, endRecognizer, error] = useRecognizer();
+
+  /*
   useEffect(() => startRecognizer(), []);
   useEffect(() => {
     document.addEventListener("keyup", (ev) => {
@@ -10,7 +13,17 @@ const App = () => {
       if (ev.code === "Enter") endRecognizer();
     });
   }, []);
-  return <div>{outputText}</div>;
+  */
+
+  useEffect(() => {
+    initAndStart();
+  }, []);
+
+  return (
+    <div>
+      <div id="game-canvas-container"></div>
+    </div>
+  );
 };
 
 export default App;
