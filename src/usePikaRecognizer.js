@@ -43,7 +43,7 @@ const checkPika = (results) => {
 
 const eventPika = new Event("PIKA");
 
-export const useRecognizer = () => {
+export const usePikaRecognizer = () => {
   const [outputText, setOutputText] = useState("");
   const [error, setError] = useState("");
   const recognition = useRef(null);
@@ -64,7 +64,6 @@ export const useRecognizer = () => {
     });
 
     return () => recognition.current.stop();
-    //onError도 한 번!
   }, []);
 
   const startRecognizer = () => {

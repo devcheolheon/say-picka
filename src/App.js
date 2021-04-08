@@ -1,9 +1,14 @@
 import React, { useEffect } from "react";
-import { useRecognizer } from "./useRecognizer.js";
+import { usePikaRecognizer } from "./usePikaRecognizer.js";
 import initAndStart from "./resources/js/main.js";
 
 const App = () => {
-  const [outputText, startRecognizer, endRecognizer, error] = useRecognizer();
+  const [
+    outputText,
+    startRecognizer,
+    endRecognizer,
+    error,
+  ] = usePikaRecognizer();
 
   useEffect(() => {
     startRecognizer();
