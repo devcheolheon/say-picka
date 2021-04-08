@@ -55,7 +55,8 @@ const loader = new PIXI.Loader();
 
 function initAndStart() {
   renderer.view.setAttribute("id", "game-canvas");
-  document.getElementById("game-canvas-container").appendChild(renderer.view);
+  let container = document.getElementById("game-canvas-container");
+  container.appendChild(renderer.view);
   renderer.render(stage); // To make the initial canvas painting stable in the Firefox browser.
 
   loader.add(ASSETS_PATH.SPRITE_SHEET);
@@ -65,6 +66,8 @@ function initAndStart() {
   }
 
   loader.load(setup);
+
+  return container;
 }
 
 /**

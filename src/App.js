@@ -16,7 +16,10 @@ const App = () => {
   */
 
   useEffect(() => {
-    initAndStart();
+    let container = initAndStart();
+    return () => {
+      container.innerHTML = "";
+    };
   }, []);
 
   return (
