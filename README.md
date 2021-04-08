@@ -1,4 +1,4 @@
-# 피카 피카 !! 피카츄 배구 
+# say-picka
 ### 링글 voice recognizer 스터디 결과물
        
 ## 개요 
