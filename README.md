@@ -1,8 +1,6 @@
 # say-picka
 ## [▶️ 데모](https://say-picka.web.app/)
 
-### 링글 voice recognizer 스터디 결과물입니다.
-       
 ## 개요 
 
           gorisanson님이 역엔지니어링으로 js로 구현한 피카츄 배구에 speech
@@ -12,6 +10,10 @@
 
 ## 참고한 url
 
-- https://dev-recruiting.ringleplus.com/486fe494-ed6d-43d9-a3b1-199bd23b935f
 - https://github.com/gorisanson/pikachu-volleyball
 - https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition
+
+
+### 링글 voice recognizer 스터디 결과물입니다.
+       
+- https://dev-recruiting.ringleplus.com/486fe494-ed6d-43d9-a3b1-199bd23b935f
