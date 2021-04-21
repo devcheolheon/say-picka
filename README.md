@@ -1,5 +1,5 @@
 # say-picka
-## [데모](https://say-picka.web.app/)
+## [▶️ 데모](https://say-picka.web.app/)
 
 ### 링글 voice recognizer 스터디 결과물입니다.
        
