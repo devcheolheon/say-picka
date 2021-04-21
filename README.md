@@ -1,5 +1,5 @@
 # say-picka
-## [▶️ 데모](https://say-picka.web.app/)
+## [데모  ▶️ ](https://say-picka.web.app/)
 
 ## 개요 
 
